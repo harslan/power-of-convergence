@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>The Power of Convergence | SAIL Framework</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --bg-dark: #0a0a1a;
@@ -30,7 +34,8 @@
             box-sizing: border-box;
         }
 
-        html, body {
+        html,
+        body {
             height: 100%;
             overflow: hidden;
         }
@@ -81,7 +86,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
+            background:
                 radial-gradient(ellipse at 20% 20%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
                 radial-gradient(ellipse at 80% 80%, rgba(240, 147, 251, 0.1) 0%, transparent 50%),
                 radial-gradient(ellipse at 50% 50%, rgba(79, 172, 254, 0.05) 0%, transparent 70%);
@@ -184,8 +189,17 @@
         }
 
         @keyframes pulse-arrow {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.1); }
+
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.8;
+                transform: scale(1.1);
+            }
         }
 
         .insight-box {
@@ -273,10 +287,25 @@
             transform: translateY(-3px);
         }
 
-        .move-tag.green { border-color: var(--accent-green); color: #68d391; }
-        .move-tag.blue { border-color: var(--accent-blue); color: #90cdf4; }
-        .move-tag.pink { border-color: var(--accent-pink); color: #f9a8d4; }
-        .move-tag.purple { border-color: var(--accent-purple); color: #b794f4; }
+        .move-tag.green {
+            border-color: var(--accent-green);
+            color: #68d391;
+        }
+
+        .move-tag.blue {
+            border-color: var(--accent-blue);
+            color: #90cdf4;
+        }
+
+        .move-tag.pink {
+            border-color: var(--accent-pink);
+            color: #f9a8d4;
+        }
+
+        .move-tag.purple {
+            border-color: var(--accent-purple);
+            color: #b794f4;
+        }
 
         /* Slide 3: Why It Matters */
         .reasons-grid {
@@ -1088,6 +1117,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -1098,13 +1128,33 @@
             animation: fadeInUp 0.6s ease forwards;
         }
 
-        .slide.active .animate-in.delay-1 { animation-delay: 0.1s; opacity: 0; }
-        .slide.active .animate-in.delay-2 { animation-delay: 0.2s; opacity: 0; }
-        .slide.active .animate-in.delay-3 { animation-delay: 0.3s; opacity: 0; }
-        .slide.active .animate-in.delay-4 { animation-delay: 0.4s; opacity: 0; }
-        .slide.active .animate-in.delay-5 { animation-delay: 0.5s; opacity: 0; }
+        .slide.active .animate-in.delay-1 {
+            animation-delay: 0.1s;
+            opacity: 0;
+        }
+
+        .slide.active .animate-in.delay-2 {
+            animation-delay: 0.2s;
+            opacity: 0;
+        }
+
+        .slide.active .animate-in.delay-3 {
+            animation-delay: 0.3s;
+            opacity: 0;
+        }
+
+        .slide.active .animate-in.delay-4 {
+            animation-delay: 0.4s;
+            opacity: 0;
+        }
+
+        .slide.active .animate-in.delay-5 {
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
     </style>
 </head>
+
 <body>
     <div class="bg-gradient"></div>
 
@@ -1113,10 +1163,15 @@
         <div class="slide active" data-slide="1">
             <div class="slide-content">
                 <div class="animate-in" style="text-align: center; margin-bottom: 20px;">
-                    <span style="background: rgba(255,255,255,0.1); padding: 8px 20px; border-radius: 50px; font-size: 0.85rem; color: var(--text-muted);">SAIL Framework | The Power of Convergence</span>
+                    <span
+                        style="background: rgba(255,255,255,0.1); padding: 8px 20px; border-radius: 50px; font-size: 0.85rem; color: var(--text-muted);">SAIL
+                        Framework | The Power of Convergence</span>
                 </div>
                 <h1 class="animate-in">Two Paths. <span class="gradient-text">One Insight.</span></h1>
-                <p class="subtitle animate-in delay-1">In our Fall 2025 Prompt AIChemy competition, students analyzed Boston Airbnb data. One finding stopped us cold: <strong style="color: white;">Superhosts charge $154 less per night than regular hosts — but earn $87/day versus $62/day.</strong> Elite hosts charging less but earning more. How?</p>
+                <p class="subtitle animate-in delay-1">In our Fall 2025 Prompt AIChemy competition, students analyzed
+                    Boston Airbnb data. One finding stopped us cold: <strong style="color: white;">Superhosts charge
+                        $154 less per night than regular hosts — but earn $87/day versus $62/day.</strong> Elite hosts
+                    charging less but earning more. How?</p>
 
                 <div class="hook-visual animate-in delay-2">
                     <div class="path-card">
@@ -1142,8 +1197,10 @@
                 </div>
 
                 <p class="subtitle animate-in delay-3" style="text-align: center; margin-top: 30px;">
-                    Different tools. Different methods. <strong style="color: white;">Identical strategic insight.</strong><br>
-                    <span style="color: var(--text-muted); font-size: 0.95em;">This convergence reveals something profound about how we should think about AI in education.</span>
+                    Different tools. Different methods. <strong style="color: white;">Identical strategic
+                        insight.</strong><br>
+                    <span style="color: var(--text-muted); font-size: 0.95em;">This convergence reveals something
+                        profound about how we should think about AI in education.</span>
                 </p>
             </div>
         </div>
@@ -1161,7 +1218,9 @@
                 </div>
 
                 <p class="subtitle animate-in delay-2" style="text-align: center; margin: 0 auto;">
-                    Whether students used Python regression or AI prompting, success required the same underlying cognitive moves — the same critical thinking that distinguishes strategic analysis from surface-level data crunching:
+                    Whether students used Python regression or AI prompting, success required the same underlying
+                    cognitive moves — the same critical thinking that distinguishes strategic analysis from
+                    surface-level data crunching:
                 </p>
 
                 <div class="cognitive-moves animate-in delay-3">
@@ -1171,8 +1230,10 @@
                     <span class="move-tag purple">Consider stakeholder implications</span>
                 </div>
 
-                <p class="subtitle animate-in delay-4" style="text-align: center; margin: 30px auto 0; font-size: 1rem;">
-                    These four moves map directly to the SAIL framework: Social Intelligence, AI Literacy, Innovation/Inquiry, and Leadership.
+                <p class="subtitle animate-in delay-4"
+                    style="text-align: center; margin: 30px auto 0; font-size: 1rem;">
+                    These four moves map directly to the SAIL framework: Social Intelligence, AI Literacy,
+                    Innovation/Inquiry, and Leadership.
                 </p>
             </div>
         </div>
@@ -1186,25 +1247,36 @@
                     <div class="reason-card animate-in delay-1">
                         <div class="number">Insight 01</div>
                         <h3>It dissolves the false debate</h3>
-                        <p>Faculty often feel caught between "teach AI tools or students will be left behind" and "preserve rigorous analytical thinking." This convergence shows these aren't opposing forces. Both paths required rigorous thinking. <strong>The tool is the vehicle — the thinking is the destination.</strong></p>
+                        <p>Faculty often feel caught between "teach AI tools or students will be left behind" and
+                            "preserve rigorous analytical thinking." This convergence shows these aren't opposing
+                            forces. Both paths required rigorous thinking. <strong>The tool is the vehicle — the
+                                thinking is the destination.</strong></p>
                     </div>
 
                     <div class="reason-card animate-in delay-2">
                         <div class="number">Insight 02</div>
                         <h3>It validates your expertise</h3>
-                        <p>You don't need to become a prompt engineer or master new tools. You already know how to design questions that force critical thinking. <strong>That's the hard part. That's what you've been doing your whole career.</strong> SAIL just makes you intentional about which pillars your assignments activate.</p>
+                        <p>You don't need to become a prompt engineer or master new tools. You already know how to
+                            design questions that force critical thinking. <strong>That's the hard part. That's what
+                                you've been doing your whole career.</strong> SAIL just makes you intentional about
+                            which pillars your assignments activate.</p>
                     </div>
 
                     <div class="reason-card animate-in delay-3">
                         <div class="number">Insight 03</div>
                         <h3>AI amplifies, not replaces</h3>
-                        <p>When two paths converge on the same insight, it reveals that AI isn't doing the thinking — the student is. The AI (or Python) processes data faster, but <strong>the student decides what to ask, notices what's surprising, interprets what it means, and considers who it affects.</strong></p>
+                        <p>When two paths converge on the same insight, it reveals that AI isn't doing the thinking —
+                            the student is. The AI (or Python) processes data faster, but <strong>the student decides
+                                what to ask, notices what's surprising, interprets what it means, and considers who it
+                                affects.</strong></p>
                     </div>
 
                     <div class="reason-card animate-in delay-4">
                         <div class="number">Insight 04</div>
                         <h3>It creates permission to experiment</h3>
-                        <p>Faculty who feel intimidated by AI can see: a student used Python, another used prompts, both succeeded because the assignment was well-designed. <strong>You can let students choose their tools, focus on outcomes rather than methods.</strong> That's liberating.</p>
+                        <p>Faculty who feel intimidated by AI can see: a student used Python, another used prompts, both
+                            succeeded because the assignment was well-designed. <strong>You can let students choose
+                                their tools, focus on outcomes rather than methods.</strong> That's liberating.</p>
                     </div>
                 </div>
             </div>
@@ -1217,10 +1289,15 @@
 
                 <div class="validation-quote animate-in delay-1">
                     <p>
-                        Faculty hear "AI in education" and think: <span class="em">I need to become a prompt engineer. I need to learn new tools. I need to change everything.</span>
+                        Faculty hear "AI in education" and think: <span class="em">I need to become a prompt engineer. I
+                            need to learn new tools. I need to change everything.</span>
                     </p>
                     <p style="margin-top: 25px;">
-                        The truth: <span class="highlight">SAIL doesn't require you to master AI.</span> It requires you to keep doing what you do best — designing rich intellectual challenges — while being intentional about which pillars those challenges activate. Whether a student answers with Python, Claude, Excel, or a napkin sketch — if the question demands multi-dimensional analysis, ethical consideration, and stakeholder awareness, the student will develop those capabilities.
+                        The truth: <span class="highlight">SAIL doesn't require you to master AI.</span> It requires you
+                        to keep doing what you do best — designing rich intellectual challenges — while being
+                        intentional about which pillars those challenges activate. Whether a student answers with
+                        Python, Claude, Excel, or a napkin sketch — if the question demands multi-dimensional analysis,
+                        ethical consideration, and stakeholder awareness, the student will develop those capabilities.
                     </p>
                 </div>
 
@@ -1252,10 +1329,14 @@
         <!-- Slide 5: The Amplifier -->
         <div class="slide" data-slide="5">
             <div class="slide-content amplifier-slide">
-                <h2 class="animate-in">AI is the Amplifier. <span class="gradient-text">You're the Conductor.</span></h2>
+                <h2 class="animate-in">AI is the Amplifier. <span class="gradient-text">You're the Conductor.</span>
+                </h2>
 
                 <p class="subtitle animate-in delay-1" style="text-align: center; margin-bottom: 30px;">
-                    This is reassuring for faculty who worry that AI will make their teaching obsolete. The opposite is true: <strong style="color: white;">AI makes good question design more important than ever</strong>, because students can now get surface-level answers instantly. The value-add is in the depth of inquiry.
+                    This is reassuring for faculty who worry that AI will make their teaching obsolete. The opposite is
+                    true: <strong style="color: white;">AI makes good question design more important than ever</strong>,
+                    because students can now get surface-level answers instantly. The value-add is in the depth of
+                    inquiry.
                 </p>
 
                 <div class="amplifier-visual">
@@ -1301,7 +1382,8 @@
                 </div>
 
                 <p class="subtitle animate-in delay-4" style="text-align: center; margin-top: 30px; font-size: 1rem;">
-                    The right column is where learning happens. The left column just accelerates the mechanics. <strong style="color: white;">Your job is to design assignments that force the right column.</strong>
+                    The right column is where learning happens. The left column just accelerates the mechanics. <strong
+                        style="color: white;">Your job is to design assignments that force the right column.</strong>
                 </p>
             </div>
         </div>
@@ -1311,9 +1393,10 @@
             <div class="slide-content bottomline-slide">
                 <div class="bottomline-main">
                     <h2 class="animate-in">The Emotional Journey</h2>
-                    
+
                     <p class="subtitle animate-in delay-1" style="text-align: center; margin-bottom: 30px;">
-                        When faculty see students using different tools arrive at the same strategic insight, something shifts:
+                        When faculty see students using different tools arrive at the same strategic insight, something
+                        shifts:
                     </p>
 
                     <div class="emotional-journey animate-in delay-2">
@@ -1343,12 +1426,16 @@
                     </div>
 
                     <div class="bottomline-quote animate-in delay-3">
-                        <p>"When students using Python and students using AI prompting both arrive at the same strategic insight, it proves that <strong>the tool isn't the teacher — the question is.</strong>"</p>
+                        <p>"When students using Python and students using AI prompting both arrive at the same strategic
+                            insight, it proves that <strong>the tool isn't the teacher — the question is.</strong>"</p>
                     </div>
 
-                    <p class="subtitle animate-in delay-4" style="text-align: center; margin-top: 30px; font-size: 1rem;">
-                        That curiosity — "What made this assignment work?" — is exactly what the SAIL Framework helps answer.<br>
-                        <strong style="color: white;">Join us at SAIL Fridays to explore how to design these experiences for your own courses.</strong>
+                    <p class="subtitle animate-in delay-4"
+                        style="text-align: center; margin-top: 30px; font-size: 1rem;">
+                        That curiosity — "What made this assignment work?" — is exactly what the SAIL Framework helps
+                        answer.<br>
+                        <strong style="color: white;">Join us at SAIL Fridays to explore how to design these experiences
+                            for your own courses.</strong>
                     </p>
                 </div>
             </div>
@@ -1448,5 +1535,7 @@
             }
         }
     </script>
+
 </body>
+
 </html>
