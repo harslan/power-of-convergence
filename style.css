@@ -97,12 +97,16 @@ body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; Removed to prevent clipping */
     align-items: center;
-    padding: 60px;
+    padding: 0;
+    /* Move padding to content */
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.6s ease, visibility 0.6s ease;
+    overflow-y: auto;
+    /* Allow scrolling */
+    -webkit-overflow-scrolling: touch;
 }
 
 .slide.active {
@@ -115,6 +119,10 @@ body {
     width: 100%;
     position: relative;
     z-index: 1;
+    margin: auto;
+    /* Center vertically */
+    padding: 100px 60px 120px;
+    /* Top padding, side padding, bottom padding for nav */
 }
 
 /* Background Effects */
