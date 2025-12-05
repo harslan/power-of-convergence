@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Power of Convergence | SAIL Framework</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a1a;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --text-muted: rgba(255, 255, 255, 0.5);
+            --accent-purple: #667eea;
+            --accent-pink: #f093fb;
+            --accent-blue: #4facfe;
+            --accent-green: #38a169;
+            --accent-red: #e53e3e;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-vibrant: linear-gradient(135deg, #667eea 0%, #f093fb 50%, #4facfe 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+        }
+
+        /* Slide Container */
+        .slides-container {
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .slide-content {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        /* Background Effects */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(102, 126, 234, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(240, 147, 251, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(79, 172, 254, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Typography */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+
+        h3 {
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .gradient-text {
+            background: var(--gradient-vibrant);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-width: 700px;
+        }
+
+        /* Slide 1: The Hook */
+        .hook-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+
+        .path-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            min-width: 200px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .path-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .path-card .icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .path-card .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .path-card .name {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .convergence-arrow {
+            font-size: 3rem;
+            color: var(--text-muted);
+            animation: pulse-arrow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-arrow {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+        }
+
+        .insight-box {
+            background: var(--gradient-primary);
+            border-radius: 24px;
+            padding: 45px 55px;
+            text-align: center;
+            box-shadow: 0 25px 80px rgba(102, 126, 234, 0.25);
+            min-width: 300px;
+        }
+
+        .insight-box .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            opacity: 0.85;
+            margin-bottom: 12px;
+        }
+
+        .insight-box .text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* Slide 2: The Revelation */
+        .revelation-container {
+            text-align: center;
+        }
+
+        .revelation-statement {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 30px;
+            padding: 60px 70px;
+            margin: 40px auto;
+            max-width: 850px;
+        }
+
+        .revelation-statement p {
+            font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .revelation-statement .dim {
+            color: var(--text-muted);
+        }
+
+        .revelation-statement .highlight {
+            color: var(--accent-pink);
+            font-style: italic;
+        }
+
+        .revelation-statement .strong {
+            background: var(--gradient-vibrant);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .cognitive-moves {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .move-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 14px 24px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .move-tag:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .move-tag.green { border-color: var(--accent-green); color: #68d391; }
+        .move-tag.blue { border-color: var(--accent-blue); color: #90cdf4; }
+        .move-tag.pink { border-color: var(--accent-pink); color: #f9a8d4; }
+        .move-tag.purple { border-color: var(--accent-purple); color: #b794f4; }
+
+        /* Slide 3: Why It Matters */
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .reasons-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .reason-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reason-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .reason-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(5px);
+        }
+
+        .reason-card:hover::before {
+            opacity: 1;
+        }
+
+        .reason-card .number {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent-purple);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .reason-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .reason-card p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Slide 4: The Validation */
+        .validation-slide {
+            text-align: center;
+        }
+
+        .validation-quote {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 30px;
+            padding: 50px 60px;
+            margin: 40px auto;
+            max-width: 900px;
+            position: relative;
+        }
+
+        .validation-quote::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-family: 'Playfair Display', serif;
+            font-size: 6rem;
+            color: var(--accent-purple);
+            opacity: 0.2;
+            line-height: 1;
+        }
+
+        .validation-quote p {
+            font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+            line-height: 1.7;
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .validation-quote .em {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .validation-quote .highlight {
+            background: var(--gradient-vibrant);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+
+        .faculty-actions {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .action-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
+            padding: 18px 28px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .action-item:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: var(--accent-green);
+            color: var(--text-primary);
+        }
+
+        .action-item .check {
+            color: var(--accent-green);
+            font-size: 1.2rem;
+        }
+
+        /* Slide 5: The Amplifier */
+        .amplifier-slide {
+            text-align: center;
+        }
+
+        .amplifier-visual {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 30px;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+
+        .amplifier-column {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 40px;
+            flex: 1;
+            min-width: 280px;
+            max-width: 400px;
+        }
+
+        .amplifier-column.ai-column {
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .amplifier-column.human-column {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(240, 147, 251, 0.1) 100%);
+            border-color: rgba(240, 147, 251, 0.3);
+        }
+
+        .amplifier-column h3 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            color: var(--text-muted);
+        }
+
+        .amplifier-column.human-column h3 {
+            background: var(--gradient-vibrant);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .amplifier-item {
+            padding: 15px 0;
+            border-bottom: 1px solid var(--border-subtle);
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .amplifier-item:last-child {
+            border-bottom: none;
+        }
+
+        .amplifier-column.human-column .amplifier-item {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .amplifier-item .icon {
+            font-size: 1.2rem;
+        }
+
+        /* Slide 6: The Bottom Line */
+        .bottomline-slide {
+            text-align: center;
+        }
+
+        .bottomline-main {
+            margin: 50px auto;
+            max-width: 900px;
+        }
+
+        .bottomline-main h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            line-height: 1.4;
+            margin-bottom: 30px;
+        }
+
+        .bottomline-quote {
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            padding: 40px 50px;
+            margin: 40px auto;
+            max-width: 800px;
+            box-shadow: 0 25px 80px rgba(102, 126, 234, 0.3);
+        }
+
+        .bottomline-quote p {
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .emotional-journey {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .emotion-step {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            padding: 20px 30px;
+            border-radius: 16px;
+            text-align: center;
+            min-width: 150px;
+            transition: all 0.3s ease;
+        }
+
+        .emotion-step:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .emotion-step .emoji {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .emotion-step .label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .emotion-step .desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .emotion-arrow {
+            display: flex;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+        }
+
+        /* Navigation */
+        .nav-container {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            z-index: 100;
+            background: rgba(10, 10, 26, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: var(--accent-purple);
+            border-color: var(--accent-purple);
+            color: white;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .nav-dots {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border-subtle);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: var(--accent-purple);
+            transform: scale(1.2);
+        }
+
+        .nav-dot:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .slide-counter {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            min-width: 50px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .slide {
+                padding: 30px;
+            }
+
+            .hook-visual {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .convergence-arrow {
+                transform: rotate(90deg);
+            }
+
+            .nav-container {
+                padding: 12px 20px;
+                gap: 15px;
+            }
+
+            .nav-btn {
+                width: 40px;
+                height: 40px;
+            }
+
+            .amplifier-visual {
+                flex-direction: column;
+            }
+
+            .emotional-journey {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .emotion-arrow {
+                transform: rotate(90deg);
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide.active .animate-in {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .slide.active .animate-in.delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .slide.active .animate-in.delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .slide.active .animate-in.delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .slide.active .animate-in.delay-4 { animation-delay: 0.4s; opacity: 0; }
+        .slide.active .animate-in.delay-5 { animation-delay: 0.5s; opacity: 0; }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+
+    <div class="slides-container">
+        <!-- Slide 1: The Hook -->
+        <div class="slide active" data-slide="1">
+            <div class="slide-content">
+                <div class="animate-in" style="text-align: center; margin-bottom: 20px;">
+                    <span style="background: rgba(255,255,255,0.1); padding: 8px 20px; border-radius: 50px; font-size: 0.85rem; color: var(--text-muted);">SAIL Framework | The Power of Convergence</span>
+                </div>
+                <h1 class="animate-in">Two Paths. <span class="gradient-text">One Insight.</span></h1>
+                <p class="subtitle animate-in delay-1">In our Fall 2025 Prompt AIChemy competition, students analyzed Boston Airbnb data. One finding stopped us cold: <strong style="color: white;">Superhosts charge $154 less per night than regular hosts — but earn $87/day versus $62/day.</strong> Elite hosts charging less but earning more. How?</p>
+
+                <div class="hook-visual animate-in delay-2">
+                    <div class="path-card">
+                        <span class="icon">🐍</span>
+                        <div class="label">Path A</div>
+                        <div class="name">Python & Statistics</div>
+                    </div>
+
+                    <div class="convergence-arrow">→</div>
+
+                    <div class="insight-box">
+                        <div class="label">Same Discovery</div>
+                        <div class="text">Volume strategy:<br>Lower price → Higher occupancy → More revenue</div>
+                    </div>
+
+                    <div class="convergence-arrow">←</div>
+
+                    <div class="path-card">
+                        <span class="icon">✨</span>
+                        <div class="label">Path B</div>
+                        <div class="name">AI Prompting</div>
+                    </div>
+                </div>
+
+                <p class="subtitle animate-in delay-3" style="text-align: center; margin-top: 30px;">
+                    Different tools. Different methods. <strong style="color: white;">Identical strategic insight.</strong><br>
+                    <span style="color: var(--text-muted); font-size: 0.95em;">This convergence reveals something profound about how we should think about AI in education.</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Revelation -->
+        <div class="slide" data-slide="2">
+            <div class="slide-content revelation-container">
+                <h2 class="animate-in">The Deeper Truth</h2>
+
+                <div class="revelation-statement animate-in delay-1">
+                    <p>
+                        The <span class="highlight">tool</span> didn't produce the insight.<br>
+                        The <span class="strong">thinking</span> did.
+                    </p>
+                </div>
+
+                <p class="subtitle animate-in delay-2" style="text-align: center; margin: 0 auto;">
+                    Whether students used Python regression or AI prompting, success required the same underlying cognitive moves — the same critical thinking that distinguishes strategic analysis from surface-level data crunching:
+                </p>
+
+                <div class="cognitive-moves animate-in delay-3">
+                    <span class="move-tag green">Define success multi-dimensionally</span>
+                    <span class="move-tag blue">Question surface-level findings</span>
+                    <span class="move-tag pink">Investigate the mechanism</span>
+                    <span class="move-tag purple">Consider stakeholder implications</span>
+                </div>
+
+                <p class="subtitle animate-in delay-4" style="text-align: center; margin: 30px auto 0; font-size: 1rem;">
+                    These four moves map directly to the SAIL framework: Social Intelligence, AI Literacy, Innovation/Inquiry, and Leadership.
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Why It Matters -->
+        <div class="slide" data-slide="3">
+            <div class="slide-content">
+                <h2 class="animate-in">Why This <span class="gradient-text">Matters</span> for Faculty</h2>
+
+                <div class="reasons-grid">
+                    <div class="reason-card animate-in delay-1">
+                        <div class="number">Insight 01</div>
+                        <h3>It dissolves the false debate</h3>
+                        <p>Faculty often feel caught between "teach AI tools or students will be left behind" and "preserve rigorous analytical thinking." This convergence shows these aren't opposing forces. Both paths required rigorous thinking. <strong>The tool is the vehicle — the thinking is the destination.</strong></p>
+                    </div>
+
+                    <div class="reason-card animate-in delay-2">
+                        <div class="number">Insight 02</div>
+                        <h3>It validates your expertise</h3>
+                        <p>You don't need to become a prompt engineer or master new tools. You already know how to design questions that force critical thinking. <strong>That's the hard part. That's what you've been doing your whole career.</strong> SAIL just makes you intentional about which pillars your assignments activate.</p>
+                    </div>
+
+                    <div class="reason-card animate-in delay-3">
+                        <div class="number">Insight 03</div>
+                        <h3>AI amplifies, not replaces</h3>
+                        <p>When two paths converge on the same insight, it reveals that AI isn't doing the thinking — the student is. The AI (or Python) processes data faster, but <strong>the student decides what to ask, notices what's surprising, interprets what it means, and considers who it affects.</strong></p>
+                    </div>
+
+                    <div class="reason-card animate-in delay-4">
+                        <div class="number">Insight 04</div>
+                        <h3>It creates permission to experiment</h3>
+                        <p>Faculty who feel intimidated by AI can see: a student used Python, another used prompts, both succeeded because the assignment was well-designed. <strong>You can let students choose their tools, focus on outcomes rather than methods.</strong> That's liberating.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: The Validation -->
+        <div class="slide" data-slide="4">
+            <div class="slide-content validation-slide">
+                <h2 class="animate-in">You Already Know <span class="gradient-text">How to Do This</span></h2>
+
+                <div class="validation-quote animate-in delay-1">
+                    <p>
+                        Faculty hear "AI in education" and think: <span class="em">I need to become a prompt engineer. I need to learn new tools. I need to change everything.</span>
+                    </p>
+                    <p style="margin-top: 25px;">
+                        The truth: <span class="highlight">SAIL doesn't require you to master AI.</span> It requires you to keep doing what you do best — designing rich intellectual challenges — while being intentional about which pillars those challenges activate. Whether a student answers with Python, Claude, Excel, or a napkin sketch — if the question demands multi-dimensional analysis, ethical consideration, and stakeholder awareness, the student will develop those capabilities.
+                    </p>
+                </div>
+
+                <p class="subtitle animate-in delay-2" style="text-align: center; margin: 30px auto 20px;">
+                    This means you have the freedom to:
+                </p>
+
+                <div class="faculty-actions animate-in delay-3">
+                    <div class="action-item">
+                        <span class="check">✓</span>
+                        Let students choose their tools
+                    </div>
+                    <div class="action-item">
+                        <span class="check">✓</span>
+                        Not mandate AI use
+                    </div>
+                    <div class="action-item">
+                        <span class="check">✓</span>
+                        Not forbid AI use
+                    </div>
+                    <div class="action-item">
+                        <span class="check">✓</span>
+                        Focus on outcomes (SAIL pillars), not methods
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: The Amplifier -->
+        <div class="slide" data-slide="5">
+            <div class="slide-content amplifier-slide">
+                <h2 class="animate-in">AI is the Amplifier. <span class="gradient-text">You're the Conductor.</span></h2>
+
+                <p class="subtitle animate-in delay-1" style="text-align: center; margin-bottom: 30px;">
+                    This is reassuring for faculty who worry that AI will make their teaching obsolete. The opposite is true: <strong style="color: white;">AI makes good question design more important than ever</strong>, because students can now get surface-level answers instantly. The value-add is in the depth of inquiry.
+                </p>
+
+                <div class="amplifier-visual">
+                    <div class="amplifier-column ai-column animate-in delay-2">
+                        <h3>What AI Does</h3>
+                        <div class="amplifier-item">
+                            <span class="icon">⚡</span>
+                            Process data faster
+                        </div>
+                        <div class="amplifier-item">
+                            <span class="icon">📊</span>
+                            Generate initial patterns
+                        </div>
+                        <div class="amplifier-item">
+                            <span class="icon">🔄</span>
+                            Iterate on analysis
+                        </div>
+                        <div class="amplifier-item">
+                            <span class="icon">📝</span>
+                            Draft initial outputs
+                        </div>
+                    </div>
+
+                    <div class="amplifier-column human-column animate-in delay-3">
+                        <h3>What Students Must Do</h3>
+                        <div class="amplifier-item">
+                            <span class="icon">🎯</span>
+                            Decide what questions to ask
+                        </div>
+                        <div class="amplifier-item">
+                            <span class="icon">🔍</span>
+                            Notice what's surprising or wrong
+                        </div>
+                        <div class="amplifier-item">
+                            <span class="icon">💡</span>
+                            Interpret what findings mean
+                        </div>
+                        <div class="amplifier-item">
+                            <span class="icon">⚖️</span>
+                            Consider who is affected
+                        </div>
+                    </div>
+                </div>
+
+                <p class="subtitle animate-in delay-4" style="text-align: center; margin-top: 30px; font-size: 1rem;">
+                    The right column is where learning happens. The left column just accelerates the mechanics. <strong style="color: white;">Your job is to design assignments that force the right column.</strong>
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 6: The Bottom Line -->
+        <div class="slide" data-slide="6">
+            <div class="slide-content bottomline-slide">
+                <div class="bottomline-main">
+                    <h2 class="animate-in">The Emotional Journey</h2>
+                    
+                    <p class="subtitle animate-in delay-1" style="text-align: center; margin-bottom: 30px;">
+                        When faculty see students using different tools arrive at the same strategic insight, something shifts:
+                    </p>
+
+                    <div class="emotional-journey animate-in delay-2">
+                        <div class="emotion-step">
+                            <span class="emoji">😮</span>
+                            <div class="label">Surprised</div>
+                            <div class="desc">"Wait, they converged?"</div>
+                        </div>
+                        <div class="emotion-arrow">→</div>
+                        <div class="emotion-step">
+                            <span class="emoji">😌</span>
+                            <div class="label">Relieved</div>
+                            <div class="desc">"I don't have to master AI"</div>
+                        </div>
+                        <div class="emotion-arrow">→</div>
+                        <div class="emotion-step">
+                            <span class="emoji">💪</span>
+                            <div class="label">Empowered</div>
+                            <div class="desc">"I already know how to do this"</div>
+                        </div>
+                        <div class="emotion-arrow">→</div>
+                        <div class="emotion-step">
+                            <span class="emoji">🤔</span>
+                            <div class="label">Curious</div>
+                            <div class="desc">"What made this assignment work?"</div>
+                        </div>
+                    </div>
+
+                    <div class="bottomline-quote animate-in delay-3">
+                        <p>"When students using Python and students using AI prompting both arrive at the same strategic insight, it proves that <strong>the tool isn't the teacher — the question is.</strong>"</p>
+                    </div>
+
+                    <p class="subtitle animate-in delay-4" style="text-align: center; margin-top: 30px; font-size: 1rem;">
+                        That curiosity — "What made this assignment work?" — is exactly what the SAIL Framework helps answer.<br>
+                        <strong style="color: white;">Join us at SAIL Fridays to explore how to design these experiences for your own courses.</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-container">
+        <button class="nav-btn" id="prevBtn" disabled>←</button>
+        <div class="nav-dots">
+            <div class="nav-dot active" data-slide="1"></div>
+            <div class="nav-dot" data-slide="2"></div>
+            <div class="nav-dot" data-slide="3"></div>
+            <div class="nav-dot" data-slide="4"></div>
+            <div class="nav-dot" data-slide="5"></div>
+            <div class="nav-dot" data-slide="6"></div>
+        </div>
+        <span class="slide-counter"><span id="currentSlide">1</span> / 6</span>
+        <button class="nav-btn" id="nextBtn">→</button>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.nav-dot');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const currentSlideEl = document.getElementById('currentSlide');
+        let currentSlide = 1;
+        const totalSlides = 6;
+
+        function goToSlide(n) {
+            // Remove active from all
+            slides.forEach(s => s.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+
+            // Set new active
+            currentSlide = n;
+            slides[currentSlide - 1].classList.add('active');
+            dots[currentSlide - 1].classList.add('active');
+            currentSlideEl.textContent = currentSlide;
+
+            // Update buttons
+            prevBtn.disabled = currentSlide === 1;
+            nextBtn.disabled = currentSlide === totalSlides;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentSlide > 1) goToSlide(currentSlide - 1);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentSlide < totalSlides) goToSlide(currentSlide + 1);
+        });
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                goToSlide(parseInt(dot.dataset.slide));
+            });
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                if (currentSlide < totalSlides) goToSlide(currentSlide + 1);
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (currentSlide > 1) goToSlide(currentSlide - 1);
+            }
+        });
+
+        // Touch swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0 && currentSlide < totalSlides) {
+                    // Swipe left - next slide
+                    goToSlide(currentSlide + 1);
+                } else if (diff < 0 && currentSlide > 1) {
+                    // Swipe right - previous slide
+                    goToSlide(currentSlide - 1);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
